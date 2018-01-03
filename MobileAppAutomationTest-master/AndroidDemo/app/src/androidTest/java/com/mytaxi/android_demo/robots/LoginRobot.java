@@ -17,15 +17,19 @@ public class LoginRobot extends Robot{
     }
 
     public LoginRobot snackbarLoginFailedDisplayed() {
-        waitId(android.support.design.R.id.snackbar_text, 2000);
-        isSnackbarWithTextDisplayed(android.support.design.R.id.snackbar_text, "Login failed");
+        int id = android.support.design.R.id.snackbar_text;
+
+        waitId(id, 2000);
+        isSnackbarWithTextDisplayed(id, "Login failed");
 
         return this;
     }
 
     public CallDriverRobot loginSuccess() {
-        waitId(R.id.textSearch, 2000);
-        isViewDisplayed(R.id.textSearch);
+        int id = R.id.textSearch;
+
+        waitId(id, 2000);
+        isViewDisplayed(id);
 
         return new CallDriverRobot();
     }

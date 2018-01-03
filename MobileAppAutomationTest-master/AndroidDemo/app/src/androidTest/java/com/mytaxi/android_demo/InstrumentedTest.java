@@ -27,6 +27,9 @@ import static org.junit.Assert.assertEquals;
 @RunWith(AndroidJUnit4.class)
 public class InstrumentedTest {
 
+    LoginRobot loginRobot;
+    CallDriverRobot callDriverRobot;
+
     private String mUsernameToBeTyped;
     private String mPasswordToBeTyped;
     private String mWrongPasswordToBeTyped;
@@ -49,10 +52,16 @@ public class InstrumentedTest {
     }
 
     @Before
+    public void initRobots(){
+        loginRobot = new LoginRobot();
+    }
+
+    @Before
     @After
     public void clearUserData(){
         MyUtils.clearUserData();
     }
+
 
     @Test
     public void useAppContext() throws Exception {
@@ -64,11 +73,9 @@ public class InstrumentedTest {
     @Test
     @LargeTest
     public void successfulLoginTest() {
-        LoginRobot loginRobot = new LoginRobot();
         loginRobot
                 .login(mUsernameToBeTyped, mPasswordToBeTyped);
 
-        CallDriverRobot callDriverRobot = new CallDriverRobot();
         callDriverRobot = loginRobot
                 .loginSuccess()
                 .searchByName(mSearchStringToBeTyped)
@@ -78,7 +85,6 @@ public class InstrumentedTest {
     @Test
     @LargeTest
     public void unsuccessfulLoginTest() {
-        LoginRobot loginRobot = new LoginRobot();
         loginRobot
                 .login(mUsernameToBeTyped, mWrongPasswordToBeTyped)
                 .snackbarLoginFailedDisplayed();
