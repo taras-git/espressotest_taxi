@@ -1,7 +1,5 @@
-package com.mytaxi.android_demo;
+package com.mytaxi.android_demo.tests;
 
-import android.content.Context;
-import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
@@ -13,11 +11,7 @@ import com.mytaxi.android_demo.utils.MyUtils;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
-import org.junit.Test;
 import org.junit.runner.RunWith;
-
-import static android.support.test.InstrumentationRegistry.getTargetContext;
-import static org.junit.Assert.assertEquals;
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -25,17 +19,17 @@ import static org.junit.Assert.assertEquals;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 @RunWith(AndroidJUnit4.class)
-public class InstrumentedTest {
+public class BasicTest {
 
     LoginRobot loginRobot;
     CallDriverRobot callDriverRobot;
 
-    private String mUsernameToBeTyped;
-    private String mPasswordToBeTyped;
-    private String mWrongPasswordToBeTyped;
-    private String mSearchStringToBeTyped;
-    private String mDriverFullName;
-    private String mPackageName;
+    String mUsernameToBeTyped;
+    String mPasswordToBeTyped;
+    String mWrongPasswordToBeTyped;
+    String mSearchStringToBeTyped;
+    String mDriverFullName;
+    String mPackageName;
 
     @Rule
     public ActivityTestRule<MainActivity> mActivityRule = new ActivityTestRule<>(
@@ -54,6 +48,7 @@ public class InstrumentedTest {
     @Before
     public void initRobots(){
         loginRobot = new LoginRobot();
+        callDriverRobot = new CallDriverRobot();
     }
 
     @Before
@@ -62,31 +57,4 @@ public class InstrumentedTest {
         MyUtils.clearUserData();
     }
 
-
-    @Test
-    public void useAppContext() throws Exception {
-        Context appContext = getTargetContext();
-
-        assertEquals(mPackageName, appContext.getPackageName());
-    }
-
-    @Test
-    @LargeTest
-    public void successfulLoginTest() {
-        loginRobot
-                .login(mUsernameToBeTyped, mPasswordToBeTyped);
-
-        callDriverRobot = loginRobot
-                .loginSuccess()
-                .searchByName(mSearchStringToBeTyped)
-                .callDriver(mDriverFullName);
-    }
-
-    @Test
-    @LargeTest
-    public void unsuccessfulLoginTest() {
-        loginRobot
-                .login(mUsernameToBeTyped, mWrongPasswordToBeTyped)
-                .snackbarLoginFailedDisplayed();
-    }
 }
