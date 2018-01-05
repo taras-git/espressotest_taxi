@@ -11,10 +11,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
 
-import java.io.IOException;
-
 import static android.support.test.InstrumentationRegistry.getTargetContext;
-import static com.mytaxi.android_demo.utils.myutils.MyUtils.runShellScript;
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -52,18 +49,6 @@ public class InstrumentedTest extends BasicTest{
         loginRobot
                 .login(mUsernameToBeTyped, mWrongPasswordToBeTyped)
                 .snackbarLoginFailedDisplayed();
-    }
-
-//    @Test
-//    @LargeTest
-    public void testShell() {
-        try {
-            runShellScript();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
 }

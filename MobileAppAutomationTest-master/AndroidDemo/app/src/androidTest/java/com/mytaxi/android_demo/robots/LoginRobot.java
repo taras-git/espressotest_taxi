@@ -13,7 +13,7 @@ public class LoginRobot extends Robot{
         waitId(id, 2000);
         isViewDisplayed(id);
 
-        typeTextOnViewById(R.id.edt_username, username, true);
+        typeTextOnViewById(id, username, true);
         typeTextOnViewById(R.id.edt_password, password, true);
         clickOnViewById(R.id.btn_login);
 
@@ -31,7 +31,6 @@ public class LoginRobot extends Robot{
 
     public CallDriverRobot loginSuccess() {
         int id = R.id.textSearch;
-
         waitId(id, 2000);
         isViewDisplayed(id);
 
