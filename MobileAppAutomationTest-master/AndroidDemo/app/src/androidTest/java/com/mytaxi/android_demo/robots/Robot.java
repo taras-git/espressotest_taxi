@@ -53,6 +53,11 @@ public class Robot {
                     for (View child : TreeIterables.breadthFirstViewTraversal(view)) {
                         // found view with required ID
                         if (viewMatcher.matches(child)) {
+                            try {
+                                Thread.sleep(200);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
                             return;
                         }
                     }

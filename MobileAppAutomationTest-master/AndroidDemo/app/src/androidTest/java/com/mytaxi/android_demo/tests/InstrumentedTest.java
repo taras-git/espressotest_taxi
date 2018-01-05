@@ -5,12 +5,16 @@ import android.support.test.filters.LargeTest;
 import android.support.test.runner.AndroidJUnit4;
 
 import com.mytaxi.android_demo.robots.CallDriverRobot;
-import com.mytaxi.android_demo.robots.LoginRobot;
 
+import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.junit.runners.MethodSorters;
+
+import java.io.IOException;
 
 import static android.support.test.InstrumentationRegistry.getTargetContext;
+import static com.mytaxi.android_demo.utils.myutils.MyUtils.runShellScript;
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -19,6 +23,7 @@ import static org.junit.Assert.assertEquals;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 @RunWith(AndroidJUnit4.class)
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class InstrumentedTest extends BasicTest{
 
     @Test
@@ -31,7 +36,6 @@ public class InstrumentedTest extends BasicTest{
     @Test
     @LargeTest
     public void successfulLoginTest() {
-        loginRobot = new LoginRobot();
         loginRobot
                 .login(mUsernameToBeTyped, mPasswordToBeTyped);
 
@@ -45,10 +49,21 @@ public class InstrumentedTest extends BasicTest{
     @Test
     @LargeTest
     public void unsuccessfulLoginTest() {
-        loginRobot = new LoginRobot();
-
         loginRobot
                 .login(mUsernameToBeTyped, mWrongPasswordToBeTyped)
                 .snackbarLoginFailedDisplayed();
     }
+
+//    @Test
+//    @LargeTest
+    public void testShell() {
+        try {
+            runShellScript();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

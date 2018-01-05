@@ -1,4 +1,4 @@
-package com.mytaxi.android_demo.utils;
+package com.mytaxi.android_demo.utils.myutils;
 
 /**
  * Created by tymchysh on 1/1/2018.

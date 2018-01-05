@@ -9,6 +9,10 @@ import com.mytaxi.android_demo.R;
 public class LoginRobot extends Robot{
 
     public LoginRobot login(String username, String password) {
+        int id = R.id.edt_username;
+        waitId(id, 2000);
+        isViewDisplayed(id);
+
         typeTextOnViewById(R.id.edt_username, username, true);
         typeTextOnViewById(R.id.edt_password, password, true);
         clickOnViewById(R.id.btn_login);
@@ -18,8 +22,8 @@ public class LoginRobot extends Robot{
 
     public LoginRobot snackbarLoginFailedDisplayed() {
         int id = android.support.design.R.id.snackbar_text;
-
         waitId(id, 2000);
+        isViewDisplayed(id);
         isSnackbarWithTextDisplayed(id, "Login failed");
 
         return this;

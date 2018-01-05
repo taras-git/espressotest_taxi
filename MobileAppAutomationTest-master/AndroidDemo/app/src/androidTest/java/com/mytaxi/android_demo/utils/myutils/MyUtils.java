@@ -1,9 +1,12 @@
-package com.mytaxi.android_demo.utils;
+package com.mytaxi.android_demo.utils.myutils;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 /**
  * Created by tymchysh on 1/2/2018.
@@ -46,6 +49,23 @@ public class MyUtils {
     public static String getPackageName(){
 
         return AssetsPropertyReader.getValue("PackageName");
+    }
+
+    public static  void runShellScript() throws InterruptedException, IOException {
+        String cmd = "adb shell ls";
+        String cmdreturn = "";
+        Runtime run = Runtime.getRuntime();
+        Process pr = null;
+        try {
+            pr = run.exec(cmd);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        pr.waitFor();
+        BufferedReader buf = new BufferedReader(new InputStreamReader(pr.getInputStream()));
+        while ((buf.readLine())!=null) {
+            System.out.println(cmdreturn);
+        }
     }
 
 }
