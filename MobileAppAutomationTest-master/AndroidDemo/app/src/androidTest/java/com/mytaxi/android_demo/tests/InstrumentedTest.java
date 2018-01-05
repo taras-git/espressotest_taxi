@@ -4,8 +4,6 @@ import android.content.Context;
 import android.support.test.filters.LargeTest;
 import android.support.test.runner.AndroidJUnit4;
 
-import com.mytaxi.android_demo.robots.CallDriverRobot;
-
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -47,7 +45,7 @@ public class InstrumentedTest extends BasicTest{
     public void unsuccessfulLoginTest() {
         loginRobot
                 .login(mUsernameToBeTyped, mWrongPasswordToBeTyped)
-                .snackbarLoginFailedDisplayed();
+                .snackbarWithLoginFailedMsgDisplayed();
     }
 
 }

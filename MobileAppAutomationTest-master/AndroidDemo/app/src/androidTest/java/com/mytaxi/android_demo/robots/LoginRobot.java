@@ -12,15 +12,15 @@ public class LoginRobot extends Robot{
         int id = R.id.edt_username;
         waitId(id, 2000);
         isViewDisplayed(id);
-
         typeTextOnViewById(id, username, true);
+
         typeTextOnViewById(R.id.edt_password, password, true);
         clickOnViewById(R.id.btn_login);
 
         return this;
     }
 
-    public LoginRobot snackbarLoginFailedDisplayed() {
+    public LoginRobot snackbarWithLoginFailedMsgDisplayed() {
         int id = android.support.design.R.id.snackbar_text;
         waitId(id, 2000);
         isViewDisplayed(id);
