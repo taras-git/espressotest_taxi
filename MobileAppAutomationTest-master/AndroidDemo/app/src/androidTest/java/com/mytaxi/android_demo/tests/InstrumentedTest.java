@@ -36,7 +36,6 @@ public class InstrumentedTest extends BasicTest{
         loginRobot
                 .login(mUsernameToBeTyped, mPasswordToBeTyped);
 
-        callDriverRobot = new CallDriverRobot();
         callDriverRobot = loginRobot
                 .loginSuccess()
                 .searchByName(mSearchStringToBeTyped)
